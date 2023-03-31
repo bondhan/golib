@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/bondhan/commonlib/util"
+	"github.com/bondhan/golib/util"
 	"github.com/mitchellh/mapstructure"
 )
 

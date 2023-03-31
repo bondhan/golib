@@ -10,9 +10,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/bondhan/commonlib/constant"
-	"github.com/bondhan/commonlib/util"
-	"gopkg.in/yaml.v2"
+	"github.com/bondhan/golib/constant"
+	"github.com/bondhan/golib/util"
 )
 
 //Getter config getter interface

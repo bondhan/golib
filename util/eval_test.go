@@ -422,7 +422,7 @@ func TestQuery(t *testing.T) {
 			"id": "21ndxgQnnAn2q39XUr8YHt3tZ7QK9mJzhLFuiw9qSXZV",
 			"name": "Sun Kara"
 			},
-			"image": "https://storage.googleapis.com/p-gotoko-legacy-images/product/1A04AAU12365.jpg",
+			"image": "https://storage.googleapis.com/p-source-legacy-images/product/1A04AAU12365.jpg",
 			"name": "Sun Kara Coconut Milk 1X65 ML (Dijual per 1 Pcs)"
 		  },
 		  "qty": {
@@ -488,7 +488,7 @@ func TestQuery(t *testing.T) {
 			"id": "GLwfDErYWu25MBfQgRCFxZ6jPpAPCm6AZzgqmSkvrQGv",
 			"name": "Ajinomoto"
 			},
-			"image": "https://storage.googleapis.com/gotoko-legacy-images/product/A04AAU12355.png"
+			"image": "https://storage.googleapis.com/source-legacy-images/product/A04AAU12355.png"
 		  },
 		  "qty": {
 			"min": 1,
@@ -534,7 +534,7 @@ func TestQuery(t *testing.T) {
 			"type": "9AAPGXDh28KEtngvtqEVrKo8LwA9yeuwvWnWYDBhvywW"
 		  },
 		  "product": {
-			"image": "https://storage.googleapis.com/gotoko-legacy-images/product/B04BAD12358.png",
+			"image": "https://storage.googleapis.com/source-legacy-images/product/B04BAD12358.png",
 			"name": "LIFEBUOY TS LEMONFRESH ARG DG 70G (Dijual per 3 Pcs)",
 			"skuNo": "1B04BAD12358",
 			"unitPerCase": 144,
@@ -610,7 +610,7 @@ func TestQuery(t *testing.T) {
 			"id": "GLwfDErYWu25MBfQgRCFxZ6jPpAPCm6AZzgqmSkvrQGv",
 			"name": "Ajinomoto"
 			},
-			"image": "https://storage.googleapis.com/gotoko-legacy-images/product/A04AAU12352.png",
+			"image": "https://storage.googleapis.com/source-legacy-images/product/A04AAU12352.png",
 			"name": "Masako Ayam Big Pack 250 GR (Dijual per 1 Pcs)",
 			"skuNo": "1A04AAU12352",
 			"unitPerCase": 48
@@ -829,7 +829,7 @@ func TestAnotherQuery(t *testing.T) {
 						"id": "6p9Q17xEAu4cmZca8sJXTGRRHwpiRmKVF3LZ1ZmSn2GE",
 						"name": "British American Tobacco"
 					},
-					"image": "https://storage.googleapis.com/gotoko-legacy-images/product/B01BAA12350.png"
+					"image": "https://storage.googleapis.com/source-legacy-images/product/B01BAA12350.png"
 				},
 				"qty": {
 					"min": {
@@ -938,7 +938,7 @@ func TestAnotherQuery(t *testing.T) {
 						"id": "2gvnL2PiqXFvSkqgMuk8oABNTG3eToDi6TrGyxTzh3z4",
 						"name": "Unilever"
 					},
-					"image": "https://storage.googleapis.com/gotoko-legacy-images/product/B02BAB12360.png",
+					"image": "https://storage.googleapis.com/source-legacy-images/product/B02BAB12360.png",
 					"name": "REXONA DEO LOTION FREE SPIRIT 144X9G",
 					"skuNo": "1B02BAB12360"
 				},
@@ -1009,7 +1009,7 @@ func TestAnotherQuery(t *testing.T) {
 						"id": "4tfN6CWnkGNSuoboZr95Mx2rwGfcTQfqDMYBUwjMMUUW",
 						"name": "Djarum"
 					},
-					"image": "https://storage.googleapis.com/gotoko-legacy-images/product/B01BAA12365.png",
+					"image": "https://storage.googleapis.com/source-legacy-images/product/B01BAA12365.png",
 					"name": "Djarum Super 16",
 					"skuNo": "1B01BAA12365",
 					"tax": ""
@@ -1214,7 +1214,7 @@ func TestEvalJoinPluck(t *testing.T) {
 					"id": "Fjq2cDfj3CgY3w9TZtRfWzzxyRPpUNqYFJnSBPAxgWdD",
 					"name": "Santos Jaya Abadi"
 				  },
-				  "image": "https://storage.googleapis.com/gotoko-legacy-images/product/A01AAI12354.png",
+				  "image": "https://storage.googleapis.com/source-legacy-images/product/A01AAI12354.png",
 				  "name": "Kapal Api Special Mix 24gr (Dijual per 1 Renceng isi 10 Pcs)",
 				  "skuNo": "1A01AAI12354",
 				  "unitPerCase": 120,
@@ -1345,7 +1345,7 @@ func TestEvalJoinPluck(t *testing.T) {
 					"id": "Fjq2cDfj3CgY3w9TZtRfWzzxyRPpUNqYFJnSBPAxgWdD",
 					"name": "Santos Jaya Abadi"
 				  },
-				  "image": "https://storage.googleapis.com/gotoko-legacy-images/product/A01AAI12354.png",
+				  "image": "https://storage.googleapis.com/source-legacy-images/product/A01AAI12354.png",
 				  "name": "Kapal Api Special Mix 24gr (Dijual per 1 Renceng isi 10 Pcs)",
 				  "skuNo": "1A01AAI12354",
 				  "unitPerCase": 120,
@@ -1465,7 +1465,7 @@ func TestEvalJoinPluck(t *testing.T) {
 							"id": "2zs8CWdMybHCfLEk9jKeF7UMrbfogvNC21Y4VJeWyArq",
 							"name": "Mayora"
 						},
-						"image": "https://storage.googleapis.com/gotoko-legacy-images/product/A01AAH12351.png",
+						"image": "https://storage.googleapis.com/source-legacy-images/product/A01AAH12351.png",
 						"name": "Teh Pucuk Harum Teh Melati 350ml (Dijual per 1 Pcs)",
 						"skuNo": "1A01AAH12351",
 						"unitPerCase": 24,
@@ -1542,7 +1542,7 @@ func TestEvalJoinPluck(t *testing.T) {
 							"id": "2zs8CWdMybHCfLEk9jKeF7UMrbfogvNC21Y4VJeWyArq",
 							"name": "Mayora"
 						},
-						"image": "https://storage.googleapis.com/gotoko-legacy-images/product/A01AAH12351.png",
+						"image": "https://storage.googleapis.com/source-legacy-images/product/A01AAH12351.png",
 						"name": "Test Sku Name-2",
 						"skuNo": "TestSku-2",
 						"unitPerCase": 24,
@@ -1681,7 +1681,7 @@ func TestEvalJoinPluck(t *testing.T) {
 							"id": "2zs8CWdMybHCfLEk9jKeF7UMrbfogvNC21Y4VJeWyArq",
 							"name": "Mayora"
 						},
-						"image": "https://storage.googleapis.com/gotoko-legacy-images/product/A01AAH12351.png",
+						"image": "https://storage.googleapis.com/source-legacy-images/product/A01AAH12351.png",
 						"name": "Teh Pucuk Harum Teh Melati 350ml (Dijual per 1 Pcs)",
 						"skuNo": "1A01AAH12351",
 						"unitPerCase": 24,

@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"strconv"
 	"time"
 )
 
@@ -371,7 +372,6 @@ func (j *JSONQ) processQuery() *JSONQ {
 		}
 		j.jsonContent = j.findInArray(ctx)
 	}
-
 	return j
 }
 
@@ -769,6 +769,7 @@ func (j *JSONQ) getFloatValFromArray(arr []interface{}, property ...string) []fl
 				return nil
 			}
 			ff = append(ff, av)
+			continue
 		}
 		if mv, ok := a.(map[string]interface{}); ok {
 			if len(property) == 0 {
@@ -778,14 +779,22 @@ func (j *JSONQ) getFloatValFromArray(arr []interface{}, property ...string) []fl
 			if fi, ok := mv[property[0]]; ok {
 				if flt, ok := fi.(float64); ok {
 					ff = append(ff, flt)
-				} else {
-					j.addError(fmt.Errorf("property %s's value '%v' is not numeric", property[0], fi))
-					return nil
+					continue
 				}
-			} else {
-				j.addError(fmt.Errorf("property '%s' does not exist", property[0]))
+
+				if fl, err := strconv.ParseFloat(fmt.Sprintf("%v", fi), 64); err == nil {
+					ff = append(ff, fl)
+					continue
+				}
+				j.addError(fmt.Errorf("property %s's value '%v' is not numeric", property[0], fi))
 				return nil
+
 			}
+			j.addError(fmt.Errorf("property '%s' does not exist", property[0]))
+			return nil
+		}
+		if fl, err := strconv.ParseFloat(fmt.Sprintf("%v", a), 64); err == nil {
+			ff = append(ff, fl)
 		}
 	}
 

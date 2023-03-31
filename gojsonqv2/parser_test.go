@@ -1,6 +1,7 @@
 package gojsonq
 
 import (
+	"io/ioutil"
 	"testing"
 )
 
@@ -171,4 +172,33 @@ func TestQueryParser(t *testing.T) {
 	if res3 != float64(3900) {
 		t.Error("failed to execute query", res3)
 	}
+}
+
+func TestQueryFile(t *testing.T) {
+
+	str, err := ioutil.ReadFile("order-test.json")
+	if err != nil {
+		t.Error("failed to read file", err)
+		return
+	}
+
+	query := "e: itemsBreakdown.items; f:items ;s:- -> w: skuNo = 1A04AAU12352 |> sum:qty"
+	res := Parse(query).Get(string(str))
+	if res.(float64) != 36 {
+		t.Error("failed to execute query", res)
+	}
+
+	query2 := "f:items; w: product.brand.name = Sun Kara; s:qty.ordered |> sum:ordered "
+	q := Parse(query2)
+	res2 := q.Get(string(str))
+	if res2.(float64) != 36 {
+		t.Error("failed to execute query", res2)
+	}
+
+	query3 := "e: itemsBreakdown.items; w: discountType = 0 -> e:. ;f:items ; s:- -> w: skuNo = 1A04AAU12352 |> sum:qty"
+	res3 := Parse(query3).Get(string(str))
+	if res3.(float64) != 18 {
+		t.Error("failed to execute query", res)
+	}
+
 }
