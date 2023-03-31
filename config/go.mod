@@ -4,15 +4,15 @@ go 1.20
 
 require (
 	github.com/bondhan/golib/constant v0.0.1
-	github.com/bondhan/golib/util v0.0.1
-	github.com/mitchellh/mapstructure v1.5.0
-	github.com/stretchr/testify v1.8.2
+	github.com/bondhan/golib/util v0.0.2
+	github.com/mitchellh/mapstructure v1.4.3
+	github.com/stretchr/testify v1.7.0
+	gopkg.in/yaml.v2 v2.4.0
 )
 
 require (
-	bitbucket.org/gotoko/commonlib/constant v0.0.7 // indirect
-	bitbucket.org/gotoko/gojsonq/v2 v2.5.9 // indirect
 	github.com/Knetic/govaluate v3.0.0+incompatible // indirect
+	github.com/bondhan/golib/gojsonqv2/v2 v2.0.1 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/fatih/structs v1.1.0 // indirect
 	github.com/jbenet/go-base58 v0.0.0-20150317085156-6237cf65f3a6 // indirect
@@ -28,5 +28,5 @@ require (
 	go.mongodb.org/mongo-driver v1.8.2 // indirect
 	golang.org/x/text v0.3.5 // indirect
 	google.golang.org/protobuf v1.27.1 // indirect
-	gopkg.in/yaml.v3 v3.0.1 // indirect
+	gopkg.in/yaml.v3 v3.0.0 // indirect
 )

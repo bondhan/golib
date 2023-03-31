@@ -2,9 +2,9 @@ package config
 
 import (
 	"fmt"
+	"github.com/bondhan/golib/util"
 	"strconv"
 
-	"github.com/bondhan/golib/util"
 	"github.com/mitchellh/mapstructure"
 )
 

@@ -10,6 +10,8 @@ import (
 	"path/filepath"
 	"strings"
 
+	"gopkg.in/yaml.v2"
+
 	"github.com/bondhan/golib/constant"
 	"github.com/bondhan/golib/util"
 )

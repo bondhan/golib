@@ -5,7 +5,7 @@ go 1.20
 require (
 	github.com/Knetic/govaluate v3.0.0+incompatible
 	github.com/bondhan/golib/constant v0.0.1
-	github.com/bondhan/golib/gojsonqv2/v2 v2.0.1
+	github.com/bondhan/golib/gojsonqv2/v2 v2.0.2
 	github.com/fatih/structs v1.1.0
 	github.com/jbenet/go-base58 v0.0.0-20150317085156-6237cf65f3a6
 	github.com/mbndr/figlet4go v0.0.0-20190224160619-d6cef5b186ea

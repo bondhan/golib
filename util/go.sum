@@ -2,8 +2,8 @@ github.com/Knetic/govaluate v3.0.0+incompatible h1:7o6+MAPhYTCF0+fdvoz1xDedhRb4f
 github.com/Knetic/govaluate v3.0.0+incompatible/go.mod h1:r7JcOSlj0wfOMncg0iLm8Leh48TZaKVeNIfJntJ2wa0=
 github.com/bondhan/golib/constant v0.0.1 h1:QtfLwmtkwEeE2qMNR06PaDtuDCDYi0e5lv6nJIKDPV4=
 github.com/bondhan/golib/constant v0.0.1/go.mod h1:hWFfPVlMWT4JHxyzdCVcQZ7/GPhql0sWJJwGXNftrso=
-github.com/bondhan/golib/gojsonqv2/v2 v2.0.1 h1:VJyRNLjRWPSk4hcGz17hMSqi7WxVcZtvJ7T7i0HiH4k=
-github.com/bondhan/golib/gojsonqv2/v2 v2.0.1/go.mod h1:wEU+AZnuPv7tJO5Wl/Axz/jY61LPeLA6VKrRNgksQ8o=
+github.com/bondhan/golib/gojsonqv2/v2 v2.0.2 h1:36eCuCqNTTzbH1uUnUCwZsO0xGxiQATc2TPDsuyqTFs=
+github.com/bondhan/golib/gojsonqv2/v2 v2.0.2/go.mod h1:wEU+AZnuPv7tJO5Wl/Axz/jY61LPeLA6VKrRNgksQ8o=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
