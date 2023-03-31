@@ -1,6 +1,8 @@
 package log
 
 import (
+	"context"
+	"fmt"
 	"path"
 	"runtime"
 	"strings"
@@ -9,6 +11,11 @@ import (
 	"github.com/mattn/go-colorable"
 	"github.com/sirupsen/logrus"
 	"github.com/snowzach/rotatefilehook"
+	"go.opentelemetry.io/otel/trace"
+)
+
+var (
+	Logger *logrus.Logger
 )
 
 const Default = "default"
@@ -64,7 +71,7 @@ func LogAdditionalFields(fields map[string]interface{}) LogOption {
 // NewLogInstance ...
 func NewLogInstance(logOptions ...LogOption) *logrus.Logger {
 	var level logrus.Level
-	logger := logrus.New()
+	Logger = logrus.New()
 
 	//default configuration
 	lc := &LogConfig{}
@@ -81,11 +88,11 @@ func NewLogInstance(logOptions ...LogOption) *logrus.Logger {
 		level = logrus.TraceLevel
 	}
 
-	logger.SetLevel(level)
-	logger.SetOutput(colorable.NewColorableStdout())
+	Logger.SetLevel(level)
+	Logger.SetOutput(colorable.NewColorableStdout())
 
 	if lc.IsJSON {
-		logger.SetFormatter(&logrus.JSONFormatter{
+		Logger.SetFormatter(&logrus.JSONFormatter{
 			TimestampFormat: time.RFC3339,
 			PrettyPrint:     true,
 			CallerPrettyfier: func(f *runtime.Frame) (string, string) {
@@ -96,7 +103,7 @@ func NewLogInstance(logOptions ...LogOption) *logrus.Logger {
 			},
 		})
 	} else {
-		logger.SetFormatter(&logrus.TextFormatter{
+		Logger.SetFormatter(&logrus.TextFormatter{
 			TimestampFormat: time.RFC3339,
 			CallerPrettyfier: func(f *runtime.Frame) (string, string) {
 				s := strings.Split(f.Function, ".")
@@ -132,13 +139,54 @@ func NewLogInstance(logOptions ...LogOption) *logrus.Logger {
 		})
 
 		if err != nil {
-			logger.Fatalf("Failed to initialize file rotate hook: %v", err)
+			Logger.Fatalf("Failed to initialize file rotate hook: %v", err)
 		}
 
-		logger.AddHook(rotateFileHook)
+		Logger.AddHook(rotateFileHook)
 	}
 
-	logger.AddHook(&DefaultFieldHook{lc.Fields})
+	Logger.AddHook(&DefaultFieldHook{lc.Fields})
 
-	return logger
+	return Logger
+}
+
+func GetLogger(ctx context.Context, pkg, fnName string) *logrus.Entry {
+
+	_, file, _, _ := runtime.Caller(1)
+	file = file[strings.LastIndex(file, "/")+1:]
+
+	fields := logrus.Fields{
+		"function": fnName,
+		"package":  pkg,
+		"source":   file,
+		"level":    GetLevel(),
+	}
+	span := trace.SpanFromContext(ctx)
+	if span != nil {
+		if span.SpanContext().HasSpanID() {
+			fields["span_id"] = span.SpanContext().SpanID().String()
+		}
+		if span.SpanContext().HasTraceID() {
+			fields["trace_id"] = span.SpanContext().TraceID().String()
+		}
+	}
+
+	return WithContext(ctx).WithFields(fields)
+}
+
+func WithContext(ctx context.Context) *logrus.Entry {
+	_, file, line, ok := runtime.Caller(1)
+	if !ok {
+		file = "<???>"
+		line = 1
+	} else {
+		slash := strings.LastIndex(file, "/")
+		file = file[slash+1:]
+	}
+	Logger.SetReportCaller(true)
+	return Logger.WithContext(ctx).WithField("source", fmt.Sprintf("%s:%d", file, line))
+}
+
+func GetLevel() string {
+	return strings.ToUpper(Logger.GetLevel().String())
 }
