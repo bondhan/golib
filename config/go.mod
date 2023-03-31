@@ -4,7 +4,7 @@ go 1.20
 
 require (
 	github.com/bondhan/golib/constant v0.0.1
-	github.com/bondhan/commonlib/util v0.0.24
+	github.com/bondhan/golib/util v0.0.1
 	github.com/imdario/mergo v0.3.13
 	github.com/mitchellh/mapstructure v1.4.3
 	github.com/stretchr/testify v1.7.0

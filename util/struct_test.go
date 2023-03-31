@@ -6,7 +6,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"bitbucket.org/gotoko/commonlib/constant"
+	"github.com/bondhan/golib/constant"
 )
 
 func TestStructField(t *testing.T) {

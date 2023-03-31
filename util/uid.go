@@ -11,7 +11,7 @@ import (
 	"sync"
 	"time"
 
-	"bitbucket.org/gotoko/commonlib/constant"
+	"github.com/bondhan/golib/constant"
 )
 
 var nodeID int64
@@ -34,7 +34,7 @@ func EncodeUID(uid int64) string {
 	return base64.StdEncoding.EncodeToString(buf[:8])
 }
 
-//GenerateRandNodeUID generate UID from random NodeID and random sequence number
+// GenerateRandNodeUID generate UID from random NodeID and random sequence number
 func GenerateRandNodeUID() int64 {
 	return (&UID{
 		NodeGen: GetRandomNodeID,
@@ -42,12 +42,12 @@ func GenerateRandNodeUID() int64 {
 	}).Generate()
 }
 
-//GenerateRandUID generate UID with NodeID from network interface and random sequence number
+// GenerateRandUID generate UID with NodeID from network interface and random sequence number
 func GenerateRandUID() int64 {
 	return NewUIDRandomNum().Generate()
 }
 
-//GenerateSeqUID generate UID with NodeID from network interface and incremental sequence number
+// GenerateSeqUID generate UID with NodeID from network interface and incremental sequence number
 func GenerateSeqUID() int64 {
 	return NewUIDSequenceNum().Generate()
 }

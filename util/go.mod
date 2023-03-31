@@ -3,10 +3,9 @@ module github.com/bondhan/golib/util
 go 1.20
 
 require (
-	github.com/bondhan/golib/constant v0.0.1
-	github.com/bondhan/golib/gojsonq/v2 v2.0.1
 	github.com/Knetic/govaluate v3.0.0+incompatible
-	github.com/bondhan/golib/constant v0.0.0-20230331032407-ea411550a260
+	github.com/bondhan/golib/constant v0.0.1
+	github.com/bondhan/golib/gojsonqv2/v2 v2.0.1
 	github.com/fatih/structs v1.1.0
 	github.com/jbenet/go-base58 v0.0.0-20150317085156-6237cf65f3a6
 	github.com/mbndr/figlet4go v0.0.0-20190224160619-d6cef5b186ea

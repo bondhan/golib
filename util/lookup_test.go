@@ -3,8 +3,9 @@ package util
 import (
 	"testing"
 
-	"bitbucket.org/gotoko/commonlib/constant"
 	"github.com/stretchr/testify/assert"
+
+	"github.com/bondhan/golib/constant"
 )
 
 func TestChildLookup(t *testing.T) {

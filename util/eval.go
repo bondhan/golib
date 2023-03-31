@@ -1,7 +1,6 @@
 package util
 
 import (
-	"bitbucket.org/gotoko/gojsonq/v2"
 	"bytes"
 	"crypto/sha256"
 	"encoding/base64"
@@ -24,6 +23,8 @@ import (
 	"github.com/spatial-go/geoos/space"
 	"github.com/tidwall/gjson"
 	"github.com/wI2L/jsondiff"
+
+	"github.com/bondhan/golib/gojsonqv2/v2"
 )
 
 // Evaluator value evaluator

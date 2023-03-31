@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	"bitbucket.org/gotoko/commonlib/constant"
+	"github.com/bondhan/golib/constant"
 )
 
 func FieldExist(name string, val interface{}) bool {
