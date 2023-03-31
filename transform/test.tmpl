@@ -1,0 +1,11 @@
+{
+    "result" : [
+        {{$i:=0}}
+        {{$ori := .}}
+        {{ range . }}
+            {{marshal .}}
+            {{if nbound $i $ori}},{{end}}
+            {{$i = incr $i}}
+        {{end}}
+    ]
+}
