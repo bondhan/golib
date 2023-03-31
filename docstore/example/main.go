@@ -50,7 +50,7 @@ func findOne() {
 
 func memQuery() {
 	config := &docstore.Config{
-		Database:   "gotoko-infra-prod",
+		Database:   "goretailer-infra-prod",
 		Collection: "p-stormsend-skuDiscount",
 		IDField:    "id",
 		Driver:     "firestore",
@@ -103,7 +103,7 @@ func memQuery() {
 
 func fireQuery() {
 	config := &docstore.Config{
-		Database:   "gotoko-infra-prod",
+		Database:   "goretailer-infra-prod",
 		Collection: "p-stormsend-skuDiscount",
 		IDField:    "id",
 		Driver:     "firestore",

@@ -15,15 +15,15 @@ func TestIsValidEmail(t *testing.T) {
 		{
 			name: "valid email in domains",
 			args: args{
-				email:        "warung@gotoko.co.id",
-				validDomains: []string{"gotoko.co.id"},
+				email:        "warung@retailer.co.id",
+				validDomains: []string{"retailer.co.id"},
 			},
 			want: true,
 		},
 		{
 			name: "valid email with empty domains",
 			args: args{
-				email:        "warung@gotoko.co.id",
+				email:        "warung@retailer.co.id",
 				validDomains: []string{},
 			},
 			want: true,
@@ -31,7 +31,7 @@ func TestIsValidEmail(t *testing.T) {
 		{
 			name: "invalid email with symbols",
 			args: args{
-				email:        "war#ung@gotoko.co.id",
+				email:        "war#ung@retailer.co.id",
 				validDomains: []string{},
 			},
 			want: false,
@@ -39,15 +39,15 @@ func TestIsValidEmail(t *testing.T) {
 		{
 			name: "invalid email with double @",
 			args: args{
-				email:        "war@ung@gotoko.co.id",
-				validDomains: []string{"gotoko.co.id"},
+				email:        "war@ung@retailer.co.id",
+				validDomains: []string{"retailer.co.id"},
 			},
 			want: false,
 		},
 		{
 			name: "invalid email with double @ but empty domains",
 			args: args{
-				email:        "war@ung@gotoko.co.id",
+				email:        "war@ung@retailer.co.id",
 				validDomains: []string{},
 			},
 			want: true,
