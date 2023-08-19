@@ -11,6 +11,7 @@ import (
 	"github.com/mattn/go-colorable"
 	"github.com/sirupsen/logrus"
 	"github.com/snowzach/rotatefilehook"
+	"github.com/uptrace/opentelemetry-go-extra/otellogrus"
 	"go.opentelemetry.io/otel/trace"
 )
 
@@ -174,6 +175,25 @@ func GetLogger(ctx context.Context, pkg, fnName string) *logrus.Entry {
 	return WithContext(ctx).WithFields(fields)
 }
 
+func SetLevel(level string) {
+	switch level {
+	case "panic":
+		logrus.SetLevel(logrus.PanicLevel)
+	case "fatal":
+		logrus.SetLevel(logrus.FatalLevel)
+	case "error":
+		logrus.SetLevel(logrus.ErrorLevel)
+	case "warning":
+		logrus.SetLevel(logrus.WarnLevel)
+	case "info":
+		logrus.SetLevel(logrus.InfoLevel)
+	case "debug":
+		logrus.SetLevel(logrus.DebugLevel)
+	default:
+		logrus.SetLevel(logrus.InfoLevel)
+	}
+}
+
 func WithContext(ctx context.Context) *logrus.Entry {
 	_, file, line, ok := runtime.Caller(1)
 	if !ok {
@@ -189,4 +209,34 @@ func WithContext(ctx context.Context) *logrus.Entry {
 
 func GetLevel() string {
 	return strings.ToUpper(Logger.GetLevel().String())
+}
+
+func Configure(format, level string, sensitiveFields ...string) {
+
+	switch strings.ToLower(format) {
+	case "json":
+		logrus.SetFormatter(&logrus.JSONFormatter{})
+	case "safe_json":
+		if len(sensitiveFields) == 0 {
+			sensitiveFields = []string{"password", "passwd", "pass", "secret", "token"}
+		}
+		logrus.SetFormatter(&SafeJSONFormatter{sensitiveFields: sensitiveFields})
+	default:
+		logrus.SetFormatter(&logrus.TextFormatter{})
+	}
+
+	lvl := strings.ToLower(level)
+	SetLevel(lvl)
+	levels := []logrus.Level{
+		logrus.PanicLevel,
+		logrus.FatalLevel,
+		logrus.ErrorLevel,
+		logrus.WarnLevel,
+	}
+
+	if lvl == "debug" {
+		levels = append(levels, logrus.DebugLevel)
+	}
+
+	logrus.AddHook(otellogrus.NewHook(otellogrus.WithLevels(levels...)))
 }
