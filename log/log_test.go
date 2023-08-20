@@ -3,6 +3,7 @@ package log
 import (
 	"bytes"
 	"encoding/json"
+	"github.com/sirupsen/logrus"
 	"io"
 	"os"
 	"testing"
@@ -172,6 +173,30 @@ func TestNewLogInstanceJSONFormatter(t *testing.T) {
 
 				assert.Contains(t, string(data), tt.want)
 			}
+		})
+	}
+}
+
+func TestGetLevel(t *testing.T) {
+	tests := []struct {
+		name string
+		want string
+		lvl  logrus.Level
+	}{
+		{
+			name: "default is PANIC",
+			want: "PANIC",
+		},
+		{
+			name: "DEBUG",
+			want: "DEBUG",
+			lvl:  logrus.DebugLevel,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			logger.SetLevel(tt.lvl)
+			assert.Equalf(t, tt.want, GetLevel(), "GetLevel()")
 		})
 	}
 }

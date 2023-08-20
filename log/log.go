@@ -17,8 +17,14 @@ import (
 )
 
 var (
-	Logger *logrus.Logger
+	logger *logrus.Logger
 )
+
+func init() {
+	if logger == nil {
+		logger = logrus.New()
+	}
+}
 
 const Default = "default"
 
@@ -73,7 +79,6 @@ func LogAdditionalFields(fields map[string]interface{}) LogOption {
 // NewLogInstance ...
 func NewLogInstance(logOptions ...LogOption) *logrus.Logger {
 	var level logrus.Level
-	Logger = logrus.New()
 
 	//default configuration
 	lc := &LogConfig{}
@@ -90,11 +95,11 @@ func NewLogInstance(logOptions ...LogOption) *logrus.Logger {
 		level = logrus.TraceLevel
 	}
 
-	Logger.SetLevel(level)
-	Logger.SetOutput(colorable.NewColorableStdout())
+	logger.SetLevel(level)
+	logger.SetOutput(colorable.NewColorableStdout())
 
 	if lc.IsJSON {
-		Logger.SetFormatter(&logrus.JSONFormatter{
+		logger.SetFormatter(&logrus.JSONFormatter{
 			TimestampFormat: time.RFC3339,
 			PrettyPrint:     true,
 			CallerPrettyfier: func(f *runtime.Frame) (string, string) {
@@ -105,7 +110,7 @@ func NewLogInstance(logOptions ...LogOption) *logrus.Logger {
 			},
 		})
 	} else {
-		Logger.SetFormatter(&logrus.TextFormatter{
+		logger.SetFormatter(&logrus.TextFormatter{
 			TimestampFormat: time.RFC3339,
 			CallerPrettyfier: func(f *runtime.Frame) (string, string) {
 				s := strings.Split(f.Function, ".")
@@ -141,15 +146,15 @@ func NewLogInstance(logOptions ...LogOption) *logrus.Logger {
 		})
 
 		if err != nil {
-			Logger.Fatalf("Failed to initialize file rotate hook: %v", err)
+			logger.Fatalf("Failed to initialize file rotate hook: %v", err)
 		}
 
-		Logger.AddHook(rotateFileHook)
+		logger.AddHook(rotateFileHook)
 	}
 
-	Logger.AddHook(&DefaultFieldHook{lc.Fields})
+	logger.AddHook(&DefaultFieldHook{lc.Fields})
 
-	return Logger
+	return logger
 }
 
 func GetLogger(ctx context.Context, pkg, fnName string) *logrus.Entry {
@@ -204,16 +209,12 @@ func WithContext(ctx context.Context) *logrus.Entry {
 		slash := strings.LastIndex(file, "/")
 		file = file[slash+1:]
 	}
-	Logger.SetReportCaller(true)
-	return Logger.WithContext(ctx).WithField("source", fmt.Sprintf("%s:%d", file, line))
+	logger.SetReportCaller(true)
+	return logger.WithContext(ctx).WithField("source", fmt.Sprintf("%s:%d", file, line))
 }
 
 func GetLevel() string {
-	lvl := Logger.GetLevel()
-	if lvl == 0 {
-		lvl = logrus.DebugLevel
-	}
-	return strings.ToUpper(lvl.String())
+	return strings.ToUpper(logger.GetLevel().String())
 }
 
 func Configure(format, level string, sensitiveFields ...string) {
