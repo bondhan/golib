@@ -3,6 +3,7 @@ package log
 import (
 	"context"
 	"fmt"
+
 	"path"
 	"runtime"
 	"strings"
@@ -208,7 +209,11 @@ func WithContext(ctx context.Context) *logrus.Entry {
 }
 
 func GetLevel() string {
-	return strings.ToUpper(Logger.GetLevel().String())
+	lvl := Logger.GetLevel()
+	if lvl == 0 {
+		lvl = logrus.DebugLevel
+	}
+	return strings.ToUpper(lvl.String())
 }
 
 func Configure(format, level string, sensitiveFields ...string) {
