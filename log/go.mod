@@ -1,4 +1,4 @@
-module github.com/bondhan/online_learning/services/template
+module github.com/bondhan/golib/log
 
 go 1.20
 
