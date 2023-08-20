@@ -12,6 +12,8 @@ import (
 	"github.com/mattn/go-colorable"
 	"github.com/sirupsen/logrus"
 	"github.com/snowzach/rotatefilehook"
+	"github.com/uptrace/opentelemetry-go-extra/otellogrus"
+	"go.opentelemetry.io/otel/trace"
 )
 
 var (
@@ -161,15 +163,15 @@ func GetLogger(ctx context.Context, pkg, fnName string) *logrus.Entry {
 		"source":   file,
 		"level":    GetLevel(),
 	}
-	//span := trace.SpanFromContext(ctx)
-	//if span != nil {
-	//	if span.SpanContext().HasSpanID() {
-	//		fields["span_id"] = span.SpanContext().SpanID().String()
-	//	}
-	//	if span.SpanContext().HasTraceID() {
-	//		fields["trace_id"] = span.SpanContext().TraceID().String()
-	//	}
-	//}
+	span := trace.SpanFromContext(ctx)
+	if span != nil {
+		if span.SpanContext().HasSpanID() {
+			fields["span_id"] = span.SpanContext().SpanID().String()
+		}
+		if span.SpanContext().HasTraceID() {
+			fields["trace_id"] = span.SpanContext().TraceID().String()
+		}
+	}
 
 	return WithContext(ctx).WithFields(fields)
 }
@@ -241,5 +243,5 @@ func Configure(format, level string, sensitiveFields ...string) {
 		levels = append(levels, logrus.DebugLevel)
 	}
 
-	//logrus.AddHook(otellogrus.NewHook(otellogrus.WithLevels(levels...)))
+	logrus.AddHook(otellogrus.NewHook(otellogrus.WithLevels(levels...)))
 }
