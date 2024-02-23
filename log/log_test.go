@@ -3,12 +3,13 @@ package log
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/sirupsen/logrus"
 	"io"
 	"os"
 	"testing"
 	"time"
 
+	"github.com/sirupsen/logrus"
+	
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

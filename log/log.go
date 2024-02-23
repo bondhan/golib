@@ -178,25 +178,25 @@ func GetLogger(ctx context.Context, pkg, fnName string) *logrus.Entry {
 		}
 	}
 
-	return WithContext(ctx).WithFields(fields)
+	return logger.WithContext(ctx).WithFields(fields)
 }
 
 func SetLevel(level string) {
 	switch level {
 	case "panic":
-		logrus.SetLevel(logrus.PanicLevel)
+		logger.SetLevel(logrus.PanicLevel)
 	case "fatal":
-		logrus.SetLevel(logrus.FatalLevel)
+		logger.SetLevel(logrus.FatalLevel)
 	case "error":
-		logrus.SetLevel(logrus.ErrorLevel)
+		logger.SetLevel(logrus.ErrorLevel)
 	case "warning":
-		logrus.SetLevel(logrus.WarnLevel)
+		logger.SetLevel(logrus.WarnLevel)
 	case "info":
-		logrus.SetLevel(logrus.InfoLevel)
+		logger.SetLevel(logrus.InfoLevel)
 	case "debug":
-		logrus.SetLevel(logrus.DebugLevel)
+		logger.SetLevel(logrus.DebugLevel)
 	default:
-		logrus.SetLevel(logrus.InfoLevel)
+		logger.SetLevel(logrus.InfoLevel)
 	}
 }
 
@@ -221,14 +221,14 @@ func Configure(format, level string, sensitiveFields ...string) {
 
 	switch strings.ToLower(format) {
 	case "json":
-		logrus.SetFormatter(&logrus.JSONFormatter{})
+		logger.SetFormatter(&logrus.JSONFormatter{})
 	case "safe_json":
 		if len(sensitiveFields) == 0 {
 			sensitiveFields = []string{"password", "passwd", "pass", "secret", "token"}
 		}
-		logrus.SetFormatter(&SafeJSONFormatter{sensitiveFields: sensitiveFields})
+		logger.SetFormatter(&SafeJSONFormatter{sensitiveFields: sensitiveFields})
 	default:
-		logrus.SetFormatter(&logrus.TextFormatter{})
+		logger.SetFormatter(&logrus.TextFormatter{})
 	}
 
 	lvl := strings.ToLower(level)
@@ -244,5 +244,5 @@ func Configure(format, level string, sensitiveFields ...string) {
 		levels = append(levels, logrus.DebugLevel)
 	}
 
-	logrus.AddHook(otellogrus.NewHook(otellogrus.WithLevels(levels...)))
+	logger.AddHook(otellogrus.NewHook(otellogrus.WithLevels(levels...)))
 }
